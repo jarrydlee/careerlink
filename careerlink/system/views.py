@@ -18,17 +18,6 @@ def home(request):
             if 'homepage_url' in result:
                 if result['homepage_url'] != None:
                     page_data['link'] = result['homepage_url']
-            if 'offices' in result:
-                offices = result['offices']
-                if len(offices) > 0:
-                    city = state_code = country_code = ''
-                    if 'city' in offices[0]:
-                        city = offices[0]['city']
-                    if 'state_code' in offices[0]:
-                        state_code = offices[0]['state_code']
-                    if 'country_code' in offices[0]:
-                        country_code = offices[0]['country_code']
-                    page_data['location'] = str(city) + ' ' + str(state_code) + ' ' +  str(country_code)
             json_info.append(page_data)
         print(page_data['location'])
         return json_info
@@ -72,8 +61,6 @@ def home(request):
                 url = "http://api.crunchbase.com/v/1/search.js?query="+ search_data +"&api_key=h4sj33a7p3gy93brusm9xa46&page=" + str(i)
                 json_info = extract_search_links( url, json_info )
 
-            
-            #print(json_info)
             for page in json_info:
                 if page['link'] != None:
                     if page['link'] != '':
