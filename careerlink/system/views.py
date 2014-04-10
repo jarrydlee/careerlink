@@ -19,7 +19,6 @@ def home(request):
                 if result['homepage_url'] != None:
                     page_data['link'] = result['homepage_url']
             json_info.append(page_data)
-        print(page_data['location'])
         return json_info
         
     def scrape( url ):
